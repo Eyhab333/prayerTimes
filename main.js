@@ -94,6 +94,13 @@ axios
     fillTimeForPrayer("Maghrib", timings.Maghrib);
     fillTimeForPrayer("Isha", timings.Isha);
 
+    const weekday = response.data.data.date.hijri.weekday.ar;
+      const day = response.data.data.date.hijri.day;
+      const month = response.data.data.date.hijri.month.ar;
+      const year = response.data.data.date.hijri.year;
+      const date = `${weekday} ${day} ${month} ${year}`;
+
+      document.getElementById("date").innerHTML = date;
   })
   .catch(function (error) {
     console.log(error);
