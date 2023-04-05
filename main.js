@@ -76,14 +76,14 @@ function fillTimeForPrayer(id, time) {
 
 
 
-let params = {
-  country: "SA",
-  city: "Ar Riyāḑ"
-};
+
 
 axios
   .get("http://api.aladhan.com/v1/timingsByCity", {
-    params: params,
+    params: {
+      country: "SA",
+      city: "Ar Riyāḑ"
+    }
   })
   .then(function (response) {
     const timings = response.data.data.timings;
