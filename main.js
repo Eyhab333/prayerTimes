@@ -14,7 +14,7 @@ let cities = [
   {
     arName: "تبوك",
     enName: "Tabūk",
-  }
+  },
 ];
 
 for (let city of cities) {
@@ -38,14 +38,15 @@ document
     getPrayersTimingsOfCity(cityName);
   });
 
+
 function getPrayersTimingsOfCity(cityName) {
   let params = {
     country: "SA",
-    city: cityName
+    city: cityName,
   };
 
-  axios
-    .get("http://api.aladhan.com/v1/timingsByCity", {
+  
+  axios.get("https://api.aladhan.com/v1/timingsByCity", {
       params: params,
     })
     .then(function (response) {
@@ -74,16 +75,12 @@ function fillTimeForPrayer(id, time) {
   document.getElementById(id).innerHTML = time;
 }
 
-
-
-
-
-axios
-  .get("https://api.aladhan.com/v1/timingsByCity", {
+let axios;
+  axios.get("https://api.aladhan.com/v1/timingsByCity", {
     params: {
       country: "SA",
-      city: "Ar Riyāḑ"
-    }
+      city: "Ar Riyāḑ",
+    },
   })
   .then(function (response) {
     const timings = response.data.data.timings;
@@ -95,12 +92,12 @@ axios
     fillTimeForPrayer("Isha", timings.Isha);
 
     const weekday = response.data.data.date.hijri.weekday.ar;
-      const day = response.data.data.date.hijri.day;
-      const month = response.data.data.date.hijri.month.ar;
-      const year = response.data.data.date.hijri.year;
-      const date = `${weekday} ${day} ${month} ${year}`;
+    const day = response.data.data.date.hijri.day;
+    const month = response.data.data.date.hijri.month.ar;
+    const year = response.data.data.date.hijri.year;
+    const date = `${weekday} ${day} ${month} ${year}`;
 
-      document.getElementById("date").innerHTML = date;
+    document.getElementById("date").innerHTML = date;
   })
   .catch(function (error) {
     console.log(error);
